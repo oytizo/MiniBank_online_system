@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 04, 2022 at 01:22 PM
+-- Generation Time: Sep 06, 2022 at 12:18 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -41,8 +41,9 @@ CREATE TABLE `account_models` (
 --
 
 INSERT INTO `account_models` (`id`, `balance`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, '2204', '1', NULL, '2022-09-04 03:55:15'),
-(2, '1797', '5', '2022-09-04 03:15:50', '2022-09-04 04:06:01');
+(1, '700', '1', NULL, '2022-09-04 23:39:36'),
+(2, '700', '5', '2022-09-04 03:15:50', '2022-09-04 23:26:22'),
+(3, '100', '6', '2022-09-04 23:01:39', '2022-09-04 23:29:49');
 
 -- --------------------------------------------------------
 
@@ -81,7 +82,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(5, '2022_09_03_105720_create_account_models_table', 2);
+(5, '2022_09_03_105720_create_account_models_table', 2),
+(6, '2022_09_05_062014_create_transection_models_table', 3);
 
 -- --------------------------------------------------------
 
@@ -117,6 +119,47 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `transectionhistory_models`
+--
+
+CREATE TABLE `transectionhistory_models` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `sender_user_id` int(11) NOT NULL,
+  `receiver_user_id` int(11) NOT NULL,
+  `amount` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `transectionhistory_models`
+--
+
+INSERT INTO `transectionhistory_models` (`id`, `sender_user_id`, `receiver_user_id`, `amount`, `created_at`, `updated_at`) VALUES
+(1, 1, 6, 100, '2022-09-05 04:29:15', '2022-09-05 04:29:15'),
+(2, 1, 5, 100, '2022-09-05 23:59:55', '2022-09-05 23:59:55'),
+(3, 1, 5, 100, NULL, NULL),
+(4, 1, 5, 50, NULL, NULL),
+(5, 5, 1, 350, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transection_models`
+--
+
+CREATE TABLE `transection_models` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `sender_user_id` int(11) NOT NULL,
+  `receiver_user_id` int(11) NOT NULL,
+  `amount` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -125,6 +168,7 @@ CREATE TABLE `users` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `role` int(11) DEFAULT NULL,
+  `balance` int(255) DEFAULT NULL,
   `personal_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -137,11 +181,12 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `role`, `personal_code`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'a', 'oytizo.bd@gmail.com', 3, 'aabb123', NULL, '$2y$10$da83M.v8DHYdrNwpgoMAoOein8.Cy5LcJNZjtRv9yZjUXKvKhYCrG', NULL, '2022-09-03 02:52:26', '2022-09-03 02:52:26'),
-(3, 'Ahsan', 'abc@gmail.com', 1, '0', NULL, '$2y$10$da83M.v8DHYdrNwpgoMAoOein8.Cy5LcJNZjtRv9yZjUXKvKhYCrG', NULL, NULL, NULL),
-(4, 'b', 'abcd@gmail.com', 3, 'aabb1234', NULL, '$2y$10$inN/pn/2bHTz8HVFqZEusOzqXhPXs8BC6b4VYvHgb/1WiJvdTNKxi', NULL, '2022-09-04 03:12:55', '2022-09-04 03:12:55'),
-(5, 'b', 'abcde@gmail.com', 3, 'aabb1234', NULL, '$2y$10$p2lKZdDNP1f0xpmWcHHafOqPbmLE1nnv4SiwJhg5bWvE1x.J0.aoS', NULL, '2022-09-04 03:15:50', '2022-09-04 03:15:50');
+INSERT INTO `users` (`id`, `name`, `email`, `role`, `balance`, `personal_code`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'a', 'oytizo.bd@gmail.com', 3, 400, 'aabb123', NULL, '$2y$10$da83M.v8DHYdrNwpgoMAoOein8.Cy5LcJNZjtRv9yZjUXKvKhYCrG', NULL, '2022-09-03 02:52:26', '2022-09-05 23:59:55'),
+(3, 'Ahsan', 'abc@gmail.com', 1, 500, '0', NULL, '$2y$10$da83M.v8DHYdrNwpgoMAoOein8.Cy5LcJNZjtRv9yZjUXKvKhYCrG', NULL, NULL, NULL),
+(5, 'b', 'abcde@gmail.com', 3, 500, 'aabb1234', NULL, '$2y$10$p2lKZdDNP1f0xpmWcHHafOqPbmLE1nnv4SiwJhg5bWvE1x.J0.aoS', NULL, '2022-09-04 03:15:50', '2022-09-05 23:59:55'),
+(6, 'c', 'xyz@gmail.com', 3, 500, '12345', NULL, '$2y$10$gWs3rYkJB1n0zm4OFanA9uumaSAyU3HDFuxCs6uxiMa/Y6QRUE3v.', NULL, '2022-09-04 23:01:39', '2022-09-04 23:01:39'),
+(7, 'd', 'pp@gmail.com', 3, 500, '1212', NULL, '$2y$10$InGwr7zDvSfPnwRVG4bUheOU.JyoqPWJX5cReKhktOak335oY.ix6', NULL, '2022-09-05 00:54:32', '2022-09-05 00:54:32');
 
 --
 -- Indexes for dumped tables
@@ -181,6 +226,18 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
+-- Indexes for table `transectionhistory_models`
+--
+ALTER TABLE `transectionhistory_models`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `transection_models`
+--
+ALTER TABLE `transection_models`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -195,7 +252,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `account_models`
 --
 ALTER TABLE `account_models`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -207,7 +264,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -216,10 +273,22 @@ ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `transectionhistory_models`
+--
+ALTER TABLE `transectionhistory_models`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `transection_models`
+--
+ALTER TABLE `transection_models`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
