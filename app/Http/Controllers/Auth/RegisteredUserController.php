@@ -45,6 +45,7 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'personal_code' => $request->pcode,
             'role' => $request->role,
+            'balance' => $request->balance,
             'password' => Hash::make($request->password),
         ]);
 
@@ -54,10 +55,7 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
         
-        $accountinfo=new accountModel;
-        $accountinfo->balance='0';
-        $accountinfo->user_id=Auth::user()->id;
-        $accountinfo->save();
+        
 
         return redirect(RouteServiceProvider::HOME);
     }

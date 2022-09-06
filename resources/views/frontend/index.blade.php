@@ -16,6 +16,7 @@
         <li><a class="active" href="{{ route('view') }}">View Account</a></li>
         <li><a href="{{ route('deposite') }}">Deposite</a></li>
         <li><a href="{{ route('transfer') }}">Fund Transfer</a></li>
+        <li><a href="{{ route('transectionhistory') }}">Transectation History</a></li>
       </ul>
       <form method="POST" action="{{ route('logout') }}">
         @csrf

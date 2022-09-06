@@ -19,6 +19,8 @@
                 </div>
               
                 <button type="submit" class="btn btn-primary">Submit</button>
+                <a class="btn btn-primary m-0" href="{{ route('dashboard') }}">View Account</a>
+
               </form>
           </div>
         </div>

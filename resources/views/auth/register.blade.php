@@ -32,6 +32,11 @@
                 <x-input id="pcode" class="block mt-1 w-full" type="text" name="pcode" :value="old('pcode')" required />
             </div>
 
+          <div class="mt-4">
+
+                <x-input id="balance" class="block mt-1 w-full" type="hidden" name="balance" value="0"  />
+            </div>
+
             <div class="mt-4">
 
                 <x-input id="role" class="block mt-1 w-full" type="hidden" name="role" value="3"  />

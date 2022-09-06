@@ -39,6 +39,14 @@
             </div>
         </div>
     </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 p-3">
+                <a class="btn btn-primary m-0" href="{{ route('dashboard') }}">View Account</a>
+            </div>
+        </div>
+
+    </div>
    
  <script src="{{ asset('bootstrap/css/bootstrap.min.css') }}"></script>
 

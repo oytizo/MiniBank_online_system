@@ -43,6 +43,7 @@ Route::group(['prefix'=>'/dashboard'],function(){
         Route::post('/adddeposite',[accountController::class,'adddeposite'])->name('adddeposite')->middleware(['auth']);
         Route::get('/transfer',[accountController::class,'transfer'])->name('transfer')->middleware(['auth']);
         Route::post('/fundtransfer',[accountController::class,'fundtransfer'])->name('fundtransfer')->middleware(['auth']);
+        Route::get('/transectionhistory',[accountController::class,'transectionhistory'])->name('transectionhistory')->middleware(['auth']);
     });
 
 });
